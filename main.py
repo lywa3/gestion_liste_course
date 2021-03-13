@@ -53,8 +53,7 @@ if __name__ == '__main__':
         if choix_programme == "1":
             element = input("Entrez un élément à votre liste : ")
             if not is_digit(element):
-                chaine_course = ", ".join(liste_course)
-                if chaine_course.count(element) <= 0:
+                if liste_course.count(element) <= 0:
                     liste_course.append(element)
                     print("""
                     ---------------------------------------------------------------
@@ -79,22 +78,29 @@ if __name__ == '__main__':
             if not len(liste_course) == 0:
                 element = input("Entrez l'élément à modifier : ")
                 update_element = input("Entrez le nouvel élément : ")
-                chaine_course = ", ".join(liste_course)
-                new_chaine_course = chaine_course.replace(element, update_element)
-                if chaine_course != new_chaine_course:
-                    liste_course = new_chaine_course.split(", ")
-                    print(f"""
-                    -------------------------------------------------
-                    Vous avez remplacé 
-                    {element} par {update_element}
-                    --------------------------------------------------
-                    """)
+                if not element.isdigit() and not update_element.isdigit():
+                    chaine_course = ", ".join(liste_course)
+                    new_chaine_course = chaine_course.replace(element, update_element)
+                    if chaine_course != new_chaine_course:
+                        liste_course = new_chaine_course.split(", ")
+                        print(f"""
+                        -------------------------------------------------
+                        Vous avez remplacé 
+                        {element} par {update_element}
+                        --------------------------------------------------
+                        """)
+                    else:
+                        print(f"""
+                        ----------------------------------------------
+                        Erreur : Votre liste contient déjà l'élément
+                        {element}
+                        ----------------------------------------------
+                        """)
                 else:
-                    print(f"""
-                    ----------------------------------------------
-                    Erreur : Votre liste contient déjà l'élément
-                    {element}
-                    ----------------------------------------------
+                    print("""
+                    ------------------------------------------
+                    Erreur : Vos éléments ne sont pas correct
+                    ------------------------------------------
                     """)
             else:
                 print("""
@@ -142,6 +148,8 @@ if __name__ == '__main__':
                 ----------------------------------------------
                 """)
         elif choix_programme == "5":
+            print("⚠ Attention ⚠ : Vous ne pouvez deplacer un element en tete de liste vers le bas.\nMais seulement "
+                  "un element du bas vers le haut.")
             move_element = input("Entrez l'élément à déplacer : ")
             new_position = input("Entrez la nouvelle position de lélément dans la liste : ")
             if new_position.isdigit() and (1 <= int(new_position) <= len(liste_course)) and (
