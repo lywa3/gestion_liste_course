@@ -148,8 +148,8 @@ if __name__ == '__main__':
                 ----------------------------------------------
                 """)
         elif choix_programme == "5":
-            print("⚠ Attention ⚠ : Vous ne pouvez deplacer un element en tete de liste vers le bas.\nMais seulement "
-                  "un element du bas vers le haut.")
+            print("""⚠ Attention ⚠ : Vous ne pouvez deplacer un element en tete de liste vers le bas.
+            Mais seulement un element du bas vers le haut.""")
             move_element = input("Entrez l'élément à déplacer : ")
             new_position = input("Entrez la nouvelle position de lélément dans la liste : ")
             if new_position.isdigit() and (1 <= int(new_position) <= len(liste_course)) and (
