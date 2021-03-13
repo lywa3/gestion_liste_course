@@ -1,3 +1,6 @@
+import sys
+
+
 def presentation(nom):
     print(f'Bienvenue, {nom}')
 
@@ -14,8 +17,6 @@ def string_is_digit(nombre_str: str):
 if __name__ == '__main__':
     msg_teste_taille_liste = "Votre liste contient actuellement {} élément{}"
     demarrage_programme = True
-    statut_programme = True
-    choix_programme = None
     liste_course = []
 
     print("""
@@ -35,7 +36,7 @@ if __name__ == '__main__':
     elif len(liste_course) > 1:
         print(msg_teste_taille_liste.format(len(liste_course), "s"))
 
-    while statut_programme:
+    while True:
         print("""
         Menu du programme liste course
         -------------------------------
@@ -51,29 +52,15 @@ if __name__ == '__main__':
         choix_programme = input("Votre choix : ")
 
         if choix_programme == "1":
-            element = input("Entrez un élément à votre liste : ")
+            element = input("🎯 Entrez un élément à votre liste : ")
             if not is_digit(element):
-                if liste_course.count(element) <= 0:
+                if element in liste_course:
                     liste_course.append(element)
-                    print("""
-                    ---------------------------------------------------------------
-                    Success : Vous avez ajouté l'élément 
-                    {} à votre liste de course
-                    ---------------------------------------------------------------
-                    """.format(element))
+                    print("""😙 Vous avez ajouté l'élément {} à votre liste de course""".format(element))
                 else:
-                    print("""
-                    ---------------------------------------------------------------
-                    Erreur : Vous avez déjà ajouté l'élément 
-                    {} à votre liste de course
-                    ---------------------------------------------------------------
-                    """.format(element))
+                    print("🙄 Vous avez déjà ajouté l'élément {} à votre liste de course".format(element))
             else:
-                print("""
-                --------------------------------------------------------------------------------------
-                Erreur : Votre élément n'est pas correct pour faire les courses. Il n'a pas été ajouté
-                --------------------------------------------------------------------------------------
-                """)
+                print("🙄 Votre élément n'est pas correct. Il n'a pas été ajouté")
         elif choix_programme == "2":
             if not len(liste_course) == 0:
                 element = input("Entrez l'élément à modifier : ")
@@ -194,7 +181,8 @@ if __name__ == '__main__':
                 ---------------------------------------------------------
                 """)
         elif choix_programme == "7":
-            statut_programme = False
+            print("""À Bientôt !""")
+            sys.exit()
         else:
             print("""
             ---------------------------------------------
@@ -202,4 +190,4 @@ if __name__ == '__main__':
             ---------------------------------------------
             """)
 
-    print("""À Bientôt !""")
+        print((("-" * 500) + "\n") * 5)
